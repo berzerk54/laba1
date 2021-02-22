@@ -2,9 +2,6 @@ package lab1.objects;
 
 import java.awt.*;
 
-import static lab1.TheGame.W_HEIGHT;
-import static lab1.TheGame.W_WIDTH;
-
 public abstract class Shape {
     protected int posX;
     protected int posY;
@@ -19,9 +16,15 @@ public abstract class Shape {
     public abstract void paint(Graphics g);
 
 
-    public void move(int dx, int dy) {
+    public abstract void move(int dx, int dy);
+
+    public abstract void c_move(int dx, int dy);
+
+}
+
+/*public void move(int dx,int dy){
+  public void move(int dx, int dy) {
         this.posX = (this.posX + dx + W_WIDTH) % W_WIDTH;
         this.posY = (this.posY + dy + W_HEIGHT) % W_HEIGHT;
     }
-
-}
+ */
