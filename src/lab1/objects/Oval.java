@@ -14,4 +14,5 @@ public class Oval extends Shape {
         g.setColor(Color.orange);
         g.fillOval(this.posX , this.posY , SCALE - 8, SCALE - 8);
     }
+
 }

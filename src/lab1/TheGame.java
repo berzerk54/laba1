@@ -1,6 +1,5 @@
 package lab1;
 
-//import com.sibsutis.oop.Objects.Apple;
 import lab1.objects.Shape;
 import lab1.objects.Oval;
 import lab1.objects.Snake;
@@ -14,6 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class TheGame extends JPanel implements ActionListener {
+
     public static JFrame jFrame;
     public static final int SCALE = 32;
     public static final int WIDTH = 20;
@@ -27,17 +27,14 @@ public class TheGame extends JPanel implements ActionListener {
 
     Snake s = new Snake(5, 6, 5, 5);
     Shape oval = new Oval(100,100);
-    Shape fruit = null;
-    Shape[] fruits = new TPoint[100];
+    Shape[] points = new TPoint[100];
     Timer timer = new Timer(1000 / SPEED, this);
 
 
 
     public TheGame() {
-        for (int i = 0; i < fruits.length; i++) {
-            fruit = TPoint.getRandomInstance();
-            fruits[i] =  fruit;
-
+        for (int i = 0; i < points.length; i++) {
+            points[i] = TPoint.getRandomInstance();
         }
         timer.start();
         addKeyListener(new KeyBoard());
@@ -45,6 +42,8 @@ public class TheGame extends JPanel implements ActionListener {
 
     }
 
+    private int xCount = 0;
+    private int yCount = 5;
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, W_WIDTH, W_HEIGHT);
@@ -63,12 +62,13 @@ public class TheGame extends JPanel implements ActionListener {
         g.setColor(Color.yellow);
         g.setFont(f);
 
-        for (int i = 0; i < fruits.length; i++) {
+        for (int i = 0; i < points.length; i++) {
 
-            fruits[i].paint(g);
-            System.out.println(fruits[i]);
+            points[i].paint(g);
+            System.out.println(points[i]);
         }
 
+        oval.move((xCount++)%10 - 5, (yCount++)%10 - 5);
         oval.paint(g);
 
 
