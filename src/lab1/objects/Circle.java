@@ -4,15 +4,16 @@ import java.awt.*;
 
 import static lab1.TheGame.SCALE;
 
-public class Oval extends Shape {
+public class Circle extends Shape {
 
-    public Oval(int x, int y) {
+    public Circle(int x, int y) {
         super(x, y);
     }
 
+
     public void paint(Graphics g) {
         g.setColor(Color.orange);
-        g.fillOval(this.posX , this.posY , SCALE - 8, SCALE - 8);
+        g.fillOval(this.posX-20, this.posY-20, 40, 40);
     }
 
 }

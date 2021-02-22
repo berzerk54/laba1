@@ -1,9 +1,8 @@
 package lab1;
 
+import lab1.objects.*;
+import lab1.objects.Rectangle;
 import lab1.objects.Shape;
-import lab1.objects.Oval;
-import lab1.objects.Snake;
-import lab1.objects.TPoint;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,24 +17,28 @@ public class TheGame extends JPanel implements ActionListener {
     public static final int SCALE = 32;
     public static final int WIDTH = 20;
     public static final int HEIGHT = 20;
-    public static final int SHIFT = 10;
     public static final int W_HEIGHT = 700;
     public static final int W_WIDTH = 700;
     public static int SPEED = 10;
-    public boolean numbered = false;
 
 
-    Snake s = new Snake(5, 6, 5, 5);
-    Shape oval = new Oval(100,100);
-    Shape[] points = new TPoint[100];
+   // Snake s = new Snake(5, 6, 5, 5);
+    Shape point = new TPoint(100,300);
+    Shape line = new Line(200, 300);
+    Shape trio = new Triangle(300,300);
+    Shape rect = new Rectangle(400,300);
+    Shape circle = new Circle(500, 300);
+    Shape ellipse = new Ellipse(600, 300);
+    int num;
+
+    //Shape[] points = new TPoint[100];
     Timer timer = new Timer(1000 / SPEED, this);
 
 
-
     public TheGame() {
-        for (int i = 0; i < points.length; i++) {
+        /*for (int i = 0; i < points.length; i++) {
             points[i] = TPoint.getRandomInstance();
-        }
+        }*/
         timer.start();
         addKeyListener(new KeyBoard());
         setFocusable(true);
@@ -44,54 +47,55 @@ public class TheGame extends JPanel implements ActionListener {
 
     private int xCount = 0;
     private int yCount = 5;
+
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, W_WIDTH, W_HEIGHT);
 
 
-        /*  for (int x = 0; x < WIDTH * SCALE + SHIFT; x += SCALE) {
-            g.setColor(Color.darkGray);
-            g.drawLine(x + SHIFT, 0 + SHIFT, x + SHIFT, (WIDTH * SCALE) + SHIFT);
-        }
-        for (int y = 0; y < WIDTH * SCALE + SHIFT; y += SCALE) {
-            g.setColor(Color.darkGray);
-            g.drawLine(0 + SHIFT, y + SHIFT, (HEIGHT * SCALE) + SHIFT, y + SHIFT);
-        }*/
-
-        Font f = new Font("Arial", Font.BOLD, 14);
-        g.setColor(Color.yellow);
-        g.setFont(f);
-
-        for (int i = 0; i < points.length; i++) {
+      /*  for (int i = 0; i < points.length; i++) {
 
             points[i].paint(g);
             System.out.println(points[i]);
+        }*/
+
+      //  circle.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
+
+        switch (num) {
+
+            case 1:   point.paint(g);
+                point.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
+            break;
+            case 2:   circle.paint(g);
+                circle.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
+
+                break;
+            case 3:   trio.paint(g);
+                trio.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
+
+                break;
+            case 4:   line.paint(g);
+                line.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
+            break;
+            case 5:   rect.paint(g);
+                rect.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
+            break;
+            case 6:   ellipse.paint(g);
+                ellipse.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
+            break;
         }
-
-        oval.move((xCount++)%10 - 5, (yCount++)%10 - 5);
-        oval.paint(g);
-
-
-
-        for (int l = 1; l < s.length; l++) {
+     /*   for (int l = 1; l < s.length; l++) {
             g.setColor(Color.black);
             g.fillRect((s.snakeX[l] * SCALE + 2) + SHIFT, (s.snakeY[l] * SCALE + 2) + SHIFT, SCALE - 4, SCALE - 4);
-            if (numbered==true) {
-                g.setColor(Color.white);
-                g.drawString(String.valueOf((int) (Math.random() * 9)), (s.snakeX[l] * SCALE + 2) + SHIFT + 8, (s.snakeY[l] * SCALE + 2) + SHIFT + 20);
-            }
+
             g.setColor(Color.white);
             g.fillRect((s.snakeX[0] * SCALE + 2) + SHIFT, (s.snakeY[0] * SCALE + 2) + SHIFT, SCALE - 4, SCALE - 4);
-        }
-
-
-
-
+        }*/
 
     }
 
     public static void main(String[] args) {
-        jFrame = new JFrame("The Snake Game-9000");
+        jFrame = new JFrame("Lab one");
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.setSize(700, 700);
         jFrame.setLocationRelativeTo(null);
@@ -101,31 +105,9 @@ public class TheGame extends JPanel implements ActionListener {
     }
 
 
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        s.move();
-
-       /* if (fruit.isCollision(s.snakeX[0], s.snakeY[0])) {
-
-            score++;
-            fruit = Fruit.getRandomInstance();
-            s.length++;
-        }*/
-
-        /*for (int l = 1; l < s.length; l++) {
-            if (fruit.isCollision(s.snakeX[l], s.snakeY[l])) {
-                fruit = Fruit.getRandomInstance();
-            }
-            if ((s.snakeX[0] == s.snakeX[l]) && (s.snakeY[0] == s.snakeY[l])) {
-                timer.stop();
-                //gameOver();
-            }
-        }
-*/
-        //if (s.length == 399) fatSnake();
+        //s.move();
 
         repaint();
     }
@@ -133,14 +115,26 @@ public class TheGame extends JPanel implements ActionListener {
     public class KeyBoard extends KeyAdapter {
         public void keyPressed(KeyEvent event) {
             int key = event.getKeyCode();
-            if (key == KeyEvent.VK_UP && s.direction != 2) s.direction = 0;
+            switch (key){
+                case KeyEvent.VK_1: num=1;
+                    break;
+                case KeyEvent.VK_2: num=2;
+                    break;
+                case KeyEvent.VK_3: num=3;
+                    break;
+                case KeyEvent.VK_4: num=4;
+                    break;
+                case KeyEvent.VK_5: num=5;
+                    break;
+                case KeyEvent.VK_6: num=6;
+                    break;
+            }
+      /*      if (key == KeyEvent.VK_UP && s.direction != 2) s.direction = 0;
             if (key == KeyEvent.VK_DOWN && s.direction != 0) s.direction = 2;
             if (key == KeyEvent.VK_RIGHT && s.direction != 3) s.direction = 1;
             if (key == KeyEvent.VK_LEFT && s.direction != 1) s.direction = 3;
-            if (key == KeyEvent.VK_ESCAPE) System.exit(0);
+        */    if (key == KeyEvent.VK_ESCAPE) System.exit(0);
         }
     }
 }
-
-
 

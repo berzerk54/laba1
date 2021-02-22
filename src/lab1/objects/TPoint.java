@@ -1,7 +1,6 @@
 package lab1.objects;
 
 
-
 import java.awt.*;
 import java.util.Random;
 
@@ -14,7 +13,7 @@ public class TPoint extends Shape {
     float r = rand.nextFloat();
     float g = rand.nextFloat();
     float b = rand.nextFloat();
-    Color randomColor = new Color(r,g,b);
+    Color randomColor = new Color(r, g, b);
 
     public TPoint(int x, int y) {
         super(x, y);
@@ -22,7 +21,7 @@ public class TPoint extends Shape {
 
     public void paint(Graphics g) {
         g.setColor(randomColor);
-        g.fillOval(this.posX , this.posY , 4, 4);
+        g.fillOval(this.posX, this.posY, 4, 4);
     }
 
 

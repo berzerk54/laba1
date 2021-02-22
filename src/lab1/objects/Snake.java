@@ -1,6 +1,7 @@
 package lab1.objects;
 
-import static lab1.TheGame.*;
+import static lab1.TheGame.HEIGHT;
+import static lab1.TheGame.WIDTH;
 
 public class Snake {
     public int length = 2;
