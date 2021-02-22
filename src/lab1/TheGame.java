@@ -116,17 +116,17 @@ public class TheGame extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent event) {
             int key = event.getKeyCode();
             switch (key){
-                case KeyEvent.VK_1: num=1;
+                case KeyEvent.VK_F1: num=1;
                     break;
-                case KeyEvent.VK_2: num=2;
+                case KeyEvent.VK_F2: num=2;
                     break;
-                case KeyEvent.VK_3: num=3;
+                case KeyEvent.VK_F3: num=3;
                     break;
-                case KeyEvent.VK_4: num=4;
+                case KeyEvent.VK_F4: num=4;
                     break;
-                case KeyEvent.VK_5: num=5;
+                case KeyEvent.VK_F5: num=5;
                     break;
-                case KeyEvent.VK_6: num=6;
+                case KeyEvent.VK_F6: num=6;
                     break;
             }
       /*      if (key == KeyEvent.VK_UP && s.direction != 2) s.direction = 0;
