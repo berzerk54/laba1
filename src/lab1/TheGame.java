@@ -14,8 +14,6 @@ import java.awt.event.KeyEvent;
 public class TheGame extends JPanel implements ActionListener {
 
     public static JFrame jFrame;
-    public static final int WIDTH = 20;
-    public static final int HEIGHT = 20;
     public static final int W_HEIGHT = 700;
     public static final int W_WIDTH = 700;
     public static int SPEED = 10;
@@ -27,6 +25,7 @@ public class TheGame extends JPanel implements ActionListener {
     Shape rect = new Rectangle(W_WIDTH / 2, W_HEIGHT / 2);
     Shape circle = new Circle(W_WIDTH / 2, W_HEIGHT / 2);
     Shape ellipse = new Ellipse(W_WIDTH / 2, W_HEIGHT / 2);
+
     int num;
     boolean control = false;
     public static int direction = 0;
@@ -101,7 +100,7 @@ public class TheGame extends JPanel implements ActionListener {
                     ellipse.move((xCount++) % 10 - 5, (yCount++) % 10 - 5);
                 break;
         }
-        String hint =  "f1-f6 - фигуры, space - переключение режимов движения, esc - выход";
+        String hint = "f1-f6 - фигуры, space - переключение режимов движения, esc - выход";
         Font f = new Font("Arial", Font.BOLD, 14);
         g.setColor(Color.yellow);
         g.setFont(f);
@@ -110,7 +109,7 @@ public class TheGame extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        jFrame = new JFrame("Lab one");
+        jFrame = new JFrame("Lab two");
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.setSize(700, 700);
         jFrame.setLocationRelativeTo(null);
@@ -122,7 +121,6 @@ public class TheGame extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // point.move(xCount,yCount);
 
         repaint();
     }

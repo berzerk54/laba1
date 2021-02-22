@@ -1,7 +1,5 @@
 package lab1.objects;
 
-import lab1.TheGame;
-
 import java.awt.*;
 import java.util.Random;
 
@@ -18,29 +16,6 @@ public class Triangle extends Shape {
         super(x, y);
     }
 
-    public void move(int dx, int dy) {
-        this.posX = (this.posX++) + dx;
-        this.posY = (this.posY++) + dy;
-    }
-
-    public void c_move(int dx, int dy) {
-        if (TheGame.direction == 0) {
-            this.posY = this.posY - dy;
-            dx = 0;
-        }
-        if (TheGame.direction == 2) {
-            this.posY = this.posY + dy;
-            dx = 0;
-        }
-        if (TheGame.direction == 1) {
-            this.posX = this.posX + dx;//right
-            dy = 0;
-        }
-        if (TheGame.direction == 3) {
-            this.posX = this.posX - dx;//left
-            dy = 0;
-        }
-    }
 
     public void paint(Graphics g) {
         int x1 = this.posX - 20;
